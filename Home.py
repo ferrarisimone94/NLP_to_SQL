@@ -33,13 +33,13 @@ st.write(st.secrets["OPENAI_API_KEY"])
 #    return response['choices'][0]['message']['content']
 
 # Streamlit app header and title
-st.set_page_config(page_title="NLP to SQL",layout="wide")
+st.set_page_config(page_title="NLP to SQL")
 
 st.write("Hi!")
 
 
 # Sidebar with social profiles and model parameters
-st.sidebar.markdown("# Follow me on my Social Profiles")
+st.sidebar.markdown("Check my profiles:")
 st.sidebar.markdown(
     """<a href="https://github.com/ferrarisimone94/NLP_to_SQL/edit/main/Home.py"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" width="60px"></a>
     <a href="https://www.linkedin.com/in/simonepaoloferrari/" target="_blank"><img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/circle-linkedin-512.png" alt="LinkedIn" width="60px"></a>
