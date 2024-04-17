@@ -17,7 +17,7 @@ def generate_response(prompt, temperature=0.7, max_tokens=256, top_p=0.9, n=2, s
     ]
     messages.extend(chat_history)
 
-    response = openai.ChatCompletion.create(
+    response = openai.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=messages,
         temperature=temperature,
