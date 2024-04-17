@@ -7,27 +7,27 @@ import os
 #openai.api_key = os.getenv("OPENAI_API_KEY")
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 # Function to interact with the GPT-3.5-turbo model with tunable parameters
-#def generate_response(prompt, temperature=0.7, max_tokens=256, top_p=0.9, n=2, stop=None, frequency_penalty=0.9, presence_penalty=0.9, chat_history=None):
-#    if chat_history is None:
-#        chat_history = []
+def generate_response(prompt, temperature=0.7, max_tokens=256, top_p=0.9, n=2, stop=None, frequency_penalty=0.9, presence_penalty=0.9, chat_history=None):
+    if chat_history is None:
+        chat_history = []
 
-#    messages = [
-#       {"role": "system", "content": "You are a helpful assistant."},
-#        {"role": "user", "content": prompt},
-#    ]
-#    messages.extend(chat_history)
+    messages = [
+       {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": prompt},
+    ]
+    messages.extend(chat_history)
 
-#    response = openai.ChatCompletion.create(
-#        model="gpt-3.5-turbo",
-#        messages=messages,
-#        temperature=temperature,
-#        max_tokens=max_tokens,
-#        top_p=top_p,
-#        n=n,
-#        stop=stop,
-#        frequency_penalty=frequency_penalty,
-#        presence_penalty=presence_penalty
-#    )
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=messages,
+        temperature=temperature,
+        max_tokens=max_tokens,
+        top_p=top_p,
+        n=n,
+        stop=stop,
+        frequency_penalty=frequency_penalty,
+        presence_penalty=presence_penalty
+    )
 
 #    return response['choices'][0]['message']['content']
 
@@ -45,13 +45,13 @@ st.sidebar.markdown(
 
 # HTML sidebar to fine-tune model's parameters to customize the bot's responses.
 #st.sidebar.markdown("# Model Parameters")
-#temperature = st.sidebar.slider("Temperature", 0.0, 1.0, 0.7, 0.1)
-#max_tokens = st.sidebar.number_input("Max Tokens", 50, 500, 256, step=50)
-#top_p = st.sidebar.slider("Top P", 0.1, 1.0, 0.9, 0.1)
-#n = st.sidebar.number_input("N", 1, 5, 2, step=1)
-#stop = st.sidebar.text_input("Stop", "")
-#frequency_penalty = st.sidebar.slider("Frequency Penalty", 0.0, 1.0, 0.9, 0.1)
-#presence_penalty = st.sidebar.slider("Presence Penalty", 0.0, 1.0, 0.9, 0.1)
+temperature = st.sidebar.slider("Temperature", 0.0, 1.0, 0.7, 0.1)
+max_tokens = st.sidebar.number_input("Max Tokens", 50, 500, 256, step=50)
+top_p = st.sidebar.slider("Top P", 0.1, 1.0, 0.9, 0.1)
+n = st.sidebar.number_input("N", 1, 5, 2, step=1)
+stop = st.sidebar.text_input("Stop", "")
+frequency_penalty = st.sidebar.slider("Frequency Penalty", 0.0, 1.0, 0.9, 0.1)
+presence_penalty = st.sidebar.slider("Presence Penalty", 0.0, 1.0, 0.9, 0.1)
 
 # Main app where user enters prompt and gets the response
 user_input = st.text_area("You:", "", key="user_input")
