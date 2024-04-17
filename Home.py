@@ -1,7 +1,7 @@
 import streamlit as st
 import openai
 import os
-import requests
+#import requests
 
 # Set your OpenAI API key here
 #openai.api_key = os.getenv("OPENAI_API_KEY")
