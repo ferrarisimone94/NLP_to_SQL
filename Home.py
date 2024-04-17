@@ -58,11 +58,11 @@ user_input = st.text_area("You:", "", key="user_input")
 generate_button = st.button("Generate Response")
 
 # Chat history
-messages = []
-if user_input.strip() != "":
-    messages.append({"role": "user", "content": user_input})
-    response = generate_response(user_input, temperature, max_tokens, top_p, n, stop, frequency_penalty, presence_penalty)
-    messages.append({"role": "assistant", "content": response})
+#messages = []
+#if user_input.strip() != "":
+#    messages.append({"role": "user", "content": user_input})
+#    response = generate_response(user_input, temperature, max_tokens, top_p, n, stop, frequency_penalty, presence_penalty)
+#    messages.append({"role": "assistant", "content": response})
 
 #TAKEN FROM SNOWFLAKE
 #response = openai.chat.completions.create(
