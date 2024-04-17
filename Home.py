@@ -3,6 +3,10 @@ import openai
 import os
 #import requests
 
+# Set your OpenAI API key here
+#openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = st.secrets["OPENAI_API_KEY"]
+
 # Sidebar with social profiles and model parameters
 st.sidebar.markdown("Check my profiles:")
 st.sidebar.markdown(
@@ -12,38 +16,12 @@ st.sidebar.markdown(
     unsafe_allow_html=True,
 )
 
-# Set your OpenAI API key here
-#openai.api_key = os.getenv("OPENAI_API_KEY")
-openai.api_key = st.secrets["OPENAI_API_KEY"]
-# Function to interact with the GPT-3.5-turbo model with tunable parameters
-def generate_response(prompt):
-    #def generate_response(prompt, temperature, max_tokens, top_p, n, stop, frequency_penalty, presence_penalty, chat_history):
-    #if chat_history is None:
-    #    chat_history = []
-    messages = [
-       {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": prompt},
-    ]
-    #messages.extend(chat_history)
-    response = openai.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=messages,
-        temperature=1,
-        max_tokens=256,
-        top_p=1,
-        n=2,
-        stop="None",
-        frequency_penalty=0,
-        presence_penalty=0
-    )
-    return response.choices[0].message.content
-
 st.write("NLP to SQL!")
 
 st.write("     ")
 
 # Main app where user enters prompt and gets the response
-user_input = st.text_area(user_input)
+user_input = st.text_area("")
 input_button = st.button("Ask")
 
 #prompt = "My name is Simone. Yours?"
@@ -85,33 +63,34 @@ st.write(generate_response(user_input))
 #    else:
 #        st.text_area("Jarvis:", value=message["content"], height=500, key="chatbot_history")
 
-# Additional styling to make the app visually appealing
-st.markdown(
-    """
-    <style>
-        body {
-            font-family: Montserrat, sans-serif;
-        }
-        .stTextInput>div>div>textarea {
-            background-color: #f0f0f0;
-            color: #000;
-        }
-        .stButton button {
-            background-color: #4CAF50;
-            color: white;
-            font-weight: bold;
-        }
-        .stTextArea>div>textarea {
-            resize: none;
-        }
-        .st-subheader {
-            margin-top: 20px;
-            font-size: 16px;
-        }
-        .stTextArea>div>div>textarea {
-            height: 100px;
-        }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+
+
+
+
+
+
+
+
+
+# Function to interact with the GPT-3.5-turbo model with tunable parameters
+def generate_response(prompt):
+    #def generate_response(prompt, temperature, max_tokens, top_p, n, stop, frequency_penalty, presence_penalty, chat_history):
+    #if chat_history is None:
+    #    chat_history = []
+    messages = [
+       {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": prompt},
+    ]
+    #messages.extend(chat_history)
+    response = openai.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=messages,
+        temperature=1,
+        max_tokens=256,
+        top_p=1,
+        n=2,
+        stop="None",
+        frequency_penalty=0,
+        presence_penalty=0
+    )
+    return response.choices[0].message.content
