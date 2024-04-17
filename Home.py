@@ -31,42 +31,33 @@ import os
 #    return response['choices'][0]['message']['content']
 
 # Streamlit app header and title
-# tattooed geek logo
-logo1 = 'https://miro.medium.com/v2/resize:fit:180/1*ypRBA86IBBbZbti76vm4Hg.png'
-# Streamlit app header and title
-st.set_page_config(page_title="Personal ChatGPT bot | By Anish Singh Walia", page_icon=logo1 , layout="wide")
+st.set_page_config(page_title="NLP to SQL",layout="wide")
 
-
-st.write("# Personal Chatbot with GPT-3.5-turbo :sunglasses: ")
-st.write("Made with love by - [Anish Singh Walia](https://anishsinghwalia.medium.com/)")
-st.write("Welcome to your personal chatbot app! Type your message below:")
+st.write("Hi!")
 
 
 # Sidebar with social profiles and model parameters
 st.sidebar.markdown("# Follow me on my Social Profiles")
 st.sidebar.markdown(
-    """<a href="https://github.com/anishsingh20" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" width="60px"></a>
-    <a href="https://www.linkedin.com/in/anish-singh-walia-924529103/" target="_blank"><img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/circle-linkedin-512.png" alt="LinkedIn" width="60px"></a>
-    <a href="https://medium.com/@anishsinghwalia" target="_blank"><img src="https://cdn1.iconfinder.com/data/icons/social-media-circle-7/512/Circled_Medium_svg5-512.png" alt="Medium" width="60px"></a>
-    <a href="https://instagram.com/cali_br20" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/2048px-Instagram_logo_2016.svg.png" alt="Instagram" width="60px"></a>
-    """,
+    """<a href="https://github.com/ferrarisimone94/NLP_to_SQL/edit/main/Home.py"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" width="60px"></a>
+    <a href="https://www.linkedin.com/in/simonepaoloferrari/" target="_blank"><img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/circle-linkedin-512.png" alt="LinkedIn" width="60px"></a>
+   """,
     unsafe_allow_html=True,
 )
 
 # HTML sidebar to fine-tune model's parameters to customize the bot's responses.
-st.sidebar.markdown("# Model Parameters")
-temperature = st.sidebar.slider("Temperature", 0.0, 1.0, 0.7, 0.1)
-max_tokens = st.sidebar.number_input("Max Tokens", 50, 500, 256, step=50)
-top_p = st.sidebar.slider("Top P", 0.1, 1.0, 0.9, 0.1)
-n = st.sidebar.number_input("N", 1, 5, 2, step=1)
-stop = st.sidebar.text_input("Stop", "")
-frequency_penalty = st.sidebar.slider("Frequency Penalty", 0.0, 1.0, 0.9, 0.1)
-presence_penalty = st.sidebar.slider("Presence Penalty", 0.0, 1.0, 0.9, 0.1)
+#st.sidebar.markdown("# Model Parameters")
+#temperature = st.sidebar.slider("Temperature", 0.0, 1.0, 0.7, 0.1)
+#max_tokens = st.sidebar.number_input("Max Tokens", 50, 500, 256, step=50)
+#top_p = st.sidebar.slider("Top P", 0.1, 1.0, 0.9, 0.1)
+#n = st.sidebar.number_input("N", 1, 5, 2, step=1)
+#stop = st.sidebar.text_input("Stop", "")
+#frequency_penalty = st.sidebar.slider("Frequency Penalty", 0.0, 1.0, 0.9, 0.1)
+#presence_penalty = st.sidebar.slider("Presence Penalty", 0.0, 1.0, 0.9, 0.1)
 
 # Main app where user enters prompt and gets the response
 user_input = st.text_area("You:", "", key="user_input")
 generate_button = st.button("Generate Response")
-
 
 # Chat history
 messages = []
