@@ -20,13 +20,13 @@ def generate_response(prompt, temperature=0.7, max_tokens=256, top_p=0.9, n=2, s
     response = openai.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=messages,
-        temperature=temperature,
-        max_tokens=max_tokens,
-        top_p=top_p,
-        n=n,
-        stop=stop,
-        frequency_penalty=frequency_penalty,
-        presence_penalty=presence_penalty
+        temperature=1,
+        max_tokens=256,
+        top_p=1,
+        #n=n,
+        #stop=stop,
+        frequency_penalty=0,
+        presence_penalty=0
     )
 
 #    return response['choices'][0]['message']['content']
@@ -45,13 +45,13 @@ st.sidebar.markdown(
 
 # HTML sidebar to fine-tune model's parameters to customize the bot's responses.
 #st.sidebar.markdown("# Model Parameters")
-temperature = st.sidebar.slider("Temperature", 0.0, 1.0, 0.7, 0.1)
-max_tokens = st.sidebar.number_input("Max Tokens", 50, 500, 256, step=50)
-top_p = st.sidebar.slider("Top P", 0.1, 1.0, 0.9, 0.1)
-n = st.sidebar.number_input("N", 1, 5, 2, step=1)
-stop = st.sidebar.text_input("Stop", "")
-frequency_penalty = st.sidebar.slider("Frequency Penalty", 0.0, 1.0, 0.9, 0.1)
-presence_penalty = st.sidebar.slider("Presence Penalty", 0.0, 1.0, 0.9, 0.1)
+#temperature = st.sidebar.slider("Temperature", 0.0, 1.0, 0.7, 0.1)
+#max_tokens = st.sidebar.number_input("Max Tokens", 50, 500, 256, step=50)
+#top_p = st.sidebar.slider("Top P", 0.1, 1.0, 0.9, 0.1)
+#n = st.sidebar.number_input("N", 1, 5, 2, step=1)
+#stop = st.sidebar.text_input("Stop", "")
+#frequency_penalty = st.sidebar.slider("Frequency Penalty", 0.0, 1.0, 0.9, 0.1)
+#presence_penalty = st.sidebar.slider("Presence Penalty", 0.0, 1.0, 0.9, 0.1)
 
 # Main app where user enters prompt and gets the response
 user_input = st.text_area("You:", "", key="user_input")
@@ -63,6 +63,17 @@ if user_input.strip() != "":
     messages.append({"role": "user", "content": user_input})
     response = generate_response(user_input, temperature, max_tokens, top_p, n, stop, frequency_penalty, presence_penalty)
     messages.append({"role": "assistant", "content": response})
+
+#TAKEN FROM SNOWFLAKE
+#response = openai.chat.completions.create(
+#        model = "gpt-3.5-turbo"
+#        , messages = [
+#        {"role": "system",
+#        "content": "I have a table called fruit in the database sf_llm. No need to mention the database in the SQL. The table has 2 columns. The first is called fruit_id and the second is called fruit_name. The column fruit_id contains integers, the column fruit_name contain text.fruit_id is integer that you can pick randomly between 1 to 1000."},
+#        {"role": "user",
+#        "content": prompt}
+#        ])
+#    return response.choices[0].message.content
 
 st.subheader("Chat History")
 for message in messages:
