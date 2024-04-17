@@ -7,7 +7,7 @@ import os
 #openai.api_key = os.getenv("OPENAI_API_KEY")
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 # Function to interact with the GPT-3.5-turbo model with tunable parameters
-def generate_response(prompt, temperature=0.7, max_tokens=256, top_p=0.9, n=2, stop=None, frequency_penalty=0.9, presence_penalty=0.9, chat_history=None):
+def generate_response(prompt, temperature, max_tokens, top_p, n, stop, frequency_penalty, presence_penalty, chat_history):
     if chat_history is None:
         chat_history = []
 
