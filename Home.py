@@ -41,15 +41,13 @@ def generate_response(prompt):
 
 st.write("NLP to SQL!")
 
-st.write("     ")
-
 # Main app where user enters prompt and gets the response
 user_input = st.text_area("")
 input_button = st.button("Ask")
 
-#prompt = "My name is Simone. Yours?"
-#st.write(user_input)
-st.write(generate_response(user_input))
+if input_button:
+    st.write("Assistant:")
+    st.write(generate_response(user_input))
 
 # HTML sidebar to fine-tune model's parameters to customize the bot's responses.
 #st.sidebar.markdown("# Model Parameters")
