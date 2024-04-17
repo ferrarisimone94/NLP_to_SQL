@@ -32,10 +32,7 @@ st.write(st.secrets["OPENAI_API_KEY"])
 
 #    return response['choices'][0]['message']['content']
 
-# Streamlit app header and title
-st.set_page_config(page_title="NLP to SQL")
-
-st.write("Hi!")
+st.write("NLP to SQL!")
 
 
 # Sidebar with social profiles and model parameters
