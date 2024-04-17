@@ -40,10 +40,15 @@ def generate_response(prompt):
 
 st.write("NLP to SQL!")
 
+st.write("     ")
 
-prompt = "My name is Simone. Yours?"
-st.write(prompt)
-st.write(generate_response(prompt))
+# Main app where user enters prompt and gets the response
+user_input = st.text_area(user_input)
+input_button = st.button("Ask")
+
+#prompt = "My name is Simone. Yours?"
+#st.write(user_input)
+st.write(generate_response(user_input))
 
 # HTML sidebar to fine-tune model's parameters to customize the bot's responses.
 #st.sidebar.markdown("# Model Parameters")
@@ -54,10 +59,6 @@ st.write(generate_response(prompt))
 #stop = st.sidebar.text_input("Stop", "")
 #frequency_penalty = st.sidebar.slider("Frequency Penalty", 0.0, 1.0, 0.9, 0.1)
 #presence_penalty = st.sidebar.slider("Presence Penalty", 0.0, 1.0, 0.9, 0.1)
-
-# Main app where user enters prompt and gets the response
-#user_input = st.text_area("You:", "", key="user_input")
-#generate_button = st.button("Generate Response")
 
 # Chat history
 #messages = []
