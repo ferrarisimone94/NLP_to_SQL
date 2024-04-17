@@ -3,20 +3,28 @@ import openai
 import os
 #import requests
 
+# Sidebar with social profiles and model parameters
+st.sidebar.markdown("Check my profiles:")
+st.sidebar.markdown(
+    """<a href="https://github.com/ferrarisimone94/NLP_to_SQL/edit/main/Home.py"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" width="60px"></a>
+    <a href="https://www.linkedin.com/in/simonepaoloferrari/" target="_blank"><img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/circle-linkedin-512.png" alt="LinkedIn" width="60px"></a>
+   """,
+    unsafe_allow_html=True,
+)
+
 # Set your OpenAI API key here
 #openai.api_key = os.getenv("OPENAI_API_KEY")
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 # Function to interact with the GPT-3.5-turbo model with tunable parameters
-def generate_response(prompt, temperature, max_tokens, top_p, n, stop, frequency_penalty, presence_penalty, chat_history):
-    if chat_history is None:
-        chat_history = []
-
+def generate_response(prompt):
+    #def generate_response(prompt, temperature, max_tokens, top_p, n, stop, frequency_penalty, presence_penalty, chat_history):
+    #if chat_history is None:
+    #    chat_history = []
     messages = [
        {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": prompt},
     ]
-    messages.extend(chat_history)
-
+    #messages.extend(chat_history)
     response = openai.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=messages,
@@ -28,20 +36,14 @@ def generate_response(prompt, temperature, max_tokens, top_p, n, stop, frequency
         frequency_penalty=0,
         presence_penalty=0
     )
-
     return response['choices'][0]['message']['content']
 
 st.write("NLP to SQL!")
 
 
-# Sidebar with social profiles and model parameters
-st.sidebar.markdown("Check my profiles:")
-st.sidebar.markdown(
-    """<a href="https://github.com/ferrarisimone94/NLP_to_SQL/edit/main/Home.py"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" width="60px"></a>
-    <a href="https://www.linkedin.com/in/simonepaoloferrari/" target="_blank"><img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/circle-linkedin-512.png" alt="LinkedIn" width="60px"></a>
-   """,
-    unsafe_allow_html=True,
-)
+prompt = "My name is Simone. Yours?"
+st.write(prompt)
+st.write(generate_response(prompt))
 
 # HTML sidebar to fine-tune model's parameters to customize the bot's responses.
 #st.sidebar.markdown("# Model Parameters")
@@ -54,8 +56,8 @@ st.sidebar.markdown(
 #presence_penalty = st.sidebar.slider("Presence Penalty", 0.0, 1.0, 0.9, 0.1)
 
 # Main app where user enters prompt and gets the response
-user_input = st.text_area("You:", "", key="user_input")
-generate_button = st.button("Generate Response")
+#user_input = st.text_area("You:", "", key="user_input")
+#generate_button = st.button("Generate Response")
 
 # Chat history
 #messages = []
@@ -75,12 +77,12 @@ generate_button = st.button("Generate Response")
 #        ])
 #    return response.choices[0].message.content
 
-st.subheader("Chat History")
-for message in messages:
-    if message["role"] == "user":
-        st.text_area("You:", value=message["content"], height=50, max_chars=200, key="user_history", disabled=True)
-    else:
-        st.text_area("Jarvis:", value=message["content"], height=500, key="chatbot_history")
+#st.subheader("Chat History")
+#for message in messages:
+#    if message["role"] == "user":
+#        st.text_area("You:", value=message["content"], height=50, max_chars=200, key="user_history", disabled=True)
+#    else:
+#        st.text_area("Jarvis:", value=message["content"], height=500, key="chatbot_history")
 
 # Additional styling to make the app visually appealing
 st.markdown(
