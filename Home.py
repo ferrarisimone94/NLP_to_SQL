@@ -23,13 +23,13 @@ def generate_response(prompt, temperature=0.7, max_tokens=256, top_p=0.9, n=2, s
         temperature=1,
         max_tokens=256,
         top_p=1,
-        #n=n,
-        #stop=stop,
+        n=2,
+        stop="None",
         frequency_penalty=0,
         presence_penalty=0
     )
 
-#    return response['choices'][0]['message']['content']
+    return response['choices'][0]['message']['content']
 
 st.write("NLP to SQL!")
 
