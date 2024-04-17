@@ -16,6 +16,29 @@ st.sidebar.markdown(
     unsafe_allow_html=True,
 )
 
+# Function to interact with the GPT-3.5-turbo model with tunable parameters
+def generate_response(prompt):
+    #def generate_response(prompt, temperature, max_tokens, top_p, n, stop, frequency_penalty, presence_penalty, chat_history):
+    #if chat_history is None:
+    #    chat_history = []
+    messages = [
+       {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": prompt},
+    ]
+    #messages.extend(chat_history)
+    response = openai.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=messages,
+        temperature=1,
+        max_tokens=256,
+        top_p=1,
+        n=2,
+        stop="None",
+        frequency_penalty=0,
+        presence_penalty=0
+    )
+    return response.choices[0].message.content
+
 st.write("NLP to SQL!")
 
 st.write("     ")
@@ -62,35 +85,3 @@ st.write(generate_response(user_input))
 #        st.text_area("You:", value=message["content"], height=50, max_chars=200, key="user_history", disabled=True)
 #    else:
 #        st.text_area("Jarvis:", value=message["content"], height=500, key="chatbot_history")
-
-
-
-
-
-
-
-
-
-
-# Function to interact with the GPT-3.5-turbo model with tunable parameters
-def generate_response(prompt):
-    #def generate_response(prompt, temperature, max_tokens, top_p, n, stop, frequency_penalty, presence_penalty, chat_history):
-    #if chat_history is None:
-    #    chat_history = []
-    messages = [
-       {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": prompt},
-    ]
-    #messages.extend(chat_history)
-    response = openai.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=messages,
-        temperature=1,
-        max_tokens=256,
-        top_p=1,
-        n=2,
-        stop="None",
-        frequency_penalty=0,
-        presence_penalty=0
-    )
-    return response.choices[0].message.content
